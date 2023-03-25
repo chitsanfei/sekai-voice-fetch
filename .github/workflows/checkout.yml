@@ -11,19 +11,22 @@ on:
 
 jobs:
   commitlint:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-          with:
-            fetch-depth: 0
-        - uses: wagoid/commitlint-github-action@v5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v5
 
   test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: 
+          - "3.8"
+          - "3.9"
+          - "3.10"
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
@@ -47,5 +50,5 @@ jobs:
     - name: Codecov
       uses: codecov/codecov-action@v3.1.1
       with:
-        token: ${{ secrets.CODECOV }}
+        token: ${{ secrets.CODECOV_TOKEN }}
       
