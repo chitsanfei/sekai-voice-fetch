@@ -44,11 +44,15 @@ class Voice:
         if not os.path.exists(path):
             os.mkdir(path)
         for mp3 in mp3_list:
-            response = requests.get(mp3)
             filename = mp3.split('/')[-1]
-            with open(os.path.join(path, filename), 'wb') as f:
+            filepath = os.path.join(path, filename)
+            if os.path.exists(filepath):
+                log_manager.log(f'{filename} 已存在，跳过下载')
+                continue
+            response = requests.get(mp3)
+            with open(filepath, 'wb') as f:
                 f.write(response.content)
             ## 获取mp3_list中项目数量，并且输出现在正在下载第几个文件
-            log_manager.log(f'正在下载第 {mp3_list.index(mp3)+1} 个文件，共 {len(mp3_list)} 个文件')
+            log_manager.log(f'正在下载第 {mp3_list.index(mp3) + 1} 个文件，共 {len(mp3_list)} 个文件')
             log_manager.log(f'下载完成 {filename}')
             time.sleep(self.interval)
