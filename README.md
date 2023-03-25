@@ -1,6 +1,6 @@
 <div align="center">
     <hr>
-    <img src="https://raw.githubusercontent.com/MashiroSA/MiaBot/master/resource/headshot.png" width="200" height="200" alt="sekai-voice-fetch"> 
+    <img src="https://raw.githubusercontent.com/MashiroSA/sekai-voice-fetch/master/assets/img/stamp.png" height="200" alt="sekai-voice-fetch"> 
     <h1>sekai-voice-fetch</h1>
     <b>一个用于爬取sekai.best网站中角色的对话语音的爬虫？</b>
 </div>
