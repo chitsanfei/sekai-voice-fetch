@@ -2,10 +2,10 @@ import time
 import requests
 import re
 import os
-from logger.LogManager import LogManager
+from logger.log_manager import LogManager
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from sekai import config_path, config
+from sekai import config
 
 
 class Voice:
@@ -52,7 +52,7 @@ class Voice:
             response = requests.get(mp3)
             with open(filepath, 'wb') as f:
                 f.write(response.content)
-            ## 获取mp3_list中项目数量，并且输出现在正在下载第几个文件
+            # 获取mp3_list中项目数量，并且输出现在正在下载第几个文件
             log_manager.log(f'正在下载第 {mp3_list.index(mp3) + 1} 个文件，共 {len(mp3_list)} 个文件')
             log_manager.log(f'下载完成 {filename}')
             time.sleep(self.interval)

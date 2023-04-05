@@ -1,6 +1,7 @@
 from pathlib import Path
 from unittest import SkipTest, TestCase
 
+
 class TestMain(TestCase):
     def test_import(self):
         from sekai.voice import Voice

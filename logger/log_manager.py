@@ -1,6 +1,7 @@
 import os
 import datetime
 
+
 class LogManager:
     def __init__(self):
         self.log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
