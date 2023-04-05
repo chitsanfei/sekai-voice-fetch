@@ -1,4 +1,4 @@
-from logger.LogManager import LogManager
+from logger.log_manager import LogManager
 from sekai.Voice import Voice
 
 # 主函数，要求依次完成上述的三个步骤
