@@ -2,7 +2,10 @@ from logger.log_manager import LogManager
 from sekai.voice import Voice
 
 
+
 # 主函数，要求依次完成上述的三个步骤
+
+
 def main():
     log_manager = LogManager()
     voice = Voice()
