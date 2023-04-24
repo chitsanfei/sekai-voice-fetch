@@ -1,7 +1,9 @@
-from logger.LogManager import LogManager
-from sekai.Voice import Voice
+from logger.log_manager import LogManager
+from sekai.voice import Voice
 
 # 主函数，要求依次完成上述的三个步骤
+
+
 def main():
     log_manager = LogManager()
     voice = Voice()
@@ -25,6 +27,6 @@ def main():
 
     log_manager.log('程序执行完成')
 
+
 if __name__ == '__main__':
     main()
-
