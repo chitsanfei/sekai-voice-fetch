@@ -16,7 +16,9 @@ if not os.path.exists(config_path):
     config['DEFAULT'] = {
         'url': 'https://sekai.best/storyreader/eventStory/15/6',
         'interval': '30',
-        'character': '14'
+        'character': '14',
+        'proxy_ip': '',
+        'proxy_port': ''
     }
     # 写入配置文件
     with open(config_path, 'w') as f:

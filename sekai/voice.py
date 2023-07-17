@@ -2,9 +2,15 @@ import time
 import requests
 import re
 import os
+
 from logger.log_manager import LogManager
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import Proxy
+
 from sekai import config
 
 
@@ -17,13 +23,33 @@ class Voice:
         self.url = config.get('DEFAULT', 'url')
         self.interval = config.getint('DEFAULT', 'interval')
         self.character = config.getint('DEFAULT', 'character')
+        self.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
 
+    @property
     def get_mp3_list(self):
         url = self.url
         chrome_options = Options()
         chrome_options.add_argument("--headless")
+        chrome_options.add_argument(f"user-agent={self.user_agent}")
+
+        proxy_ip = "http://127.0.0.1"
+        proxy_port = "7890"
+        proxy = Proxy({
+            'proxyType': 'MANUAL',
+            'httpProxy': f'{proxy_ip}:{proxy_port}',
+            'sslProxy': f'{proxy_ip}:{proxy_port}',
+        })
+        chrome_options.add_argument('--proxy-server=%s' % proxy.httpProxy)
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
+
+        # 显式等待，等待 JavaScript 加载完成
+        wait = WebDriverWait(driver, 30)
+        wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+
+        # 等待页面上某个元素加载完成
+        # wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='MuiContainer-root MuiContainer-maxWidthLg css-1qos7gm']")))
+
         html = driver.page_source
 
         mp3_list = []

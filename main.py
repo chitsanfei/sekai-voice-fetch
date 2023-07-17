@@ -1,6 +1,8 @@
 from logger.log_manager import LogManager
 from sekai.voice import Voice
 
+
+
 # 主函数，要求依次完成上述的三个步骤
 
 
@@ -15,7 +17,7 @@ def main():
     while True:
         count += 1
         log_manager.log('正在尝试获取mp3列表，已执行' + str(count) + '次')
-        mp3_list = voice.get_mp3_list()
+        mp3_list = voice.get_mp3_list
         if len(mp3_list) != 0:
             break
 
