@@ -33,13 +33,13 @@
 ├── config
 │   └── setting_fetch.ini #配置文件，在运行前你必须先配置这个文件
 ├── logger #logger包，主要管理日志功能
-│   ├── LogManager.py
+│   ├── log_manager.py
 │   ├── __init__.py
 │   └── logs #日志
 ├── main.py #程序入口点
 ├── requirements.txt #依赖
 ├── sekai #sekai包，主要管理模拟访问和下载
-│   ├── Voice.py
+│   ├── voice.py
 │   ├── __init__.py
 │   └── resource #下载到的文件都存放在这个文件夹里
 │
@@ -63,12 +63,19 @@ character = 14
 - 如有需要，可以继续修改下载间隔interval(默认30秒)，请勿调整过小，极容易触发`503`。
 
 ### 运行
-> Python > 3.8, Test by Python 3.10
+> Python > 3.8, Tested by Python 3.10
 > 
 > 建议启用虚拟环境venv
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
 ```bash
   pip install -r requirements.txt
 ```
+
 ```bash
   python3 ./main.py
 ```
@@ -78,7 +85,7 @@ character = 14
 - 暂且不支持异步。
 - 暂且不支持多链接批量下载，执行一次后需要更换链接。
 - 没有很好的异常捕获。
-- JS加载的处理直接使用循环有点暴力。
+- JS加载的处理直接使用循环有点暴力。（好像好了）
 
 ## 许可证
 
@@ -97,4 +104,3 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## 感谢
 感谢sekai.best资源站为大家提供关于PJSK的资源服务。
-Copilot真好用！还有ChatGPT！

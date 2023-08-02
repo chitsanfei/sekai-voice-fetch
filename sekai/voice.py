@@ -19,14 +19,22 @@ class Voice:
     def __init__(self):
         # self.config = configparser.ConfigParser()
         # config_file_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'setting_fetch.ini')
+
+        # 下面的内容是对config.ini文件的读取
         self.config = config
         self.url = config.get('DEFAULT', 'url')
         self.interval = config.getint('DEFAULT', 'interval')
         self.character = config.getint('DEFAULT', 'character')
+        self.proxy = config.getboolean('DEFAULT', 'proxy')
+        self.proxy_ip = config.get('DEFAULT', 'proxy_ip')
+        self.proxy_port = config.get('DEFAULT', 'proxy_port')
         self.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
 
+    # 获取mp3的url列表
     @property
     def get_mp3_list(self):
+
+        # 初始化浏览器
         url = self.url
         chrome_options = Options()
         chrome_options.add_argument("--headless")
@@ -34,12 +42,15 @@ class Voice:
 
         proxy_ip = "http://127.0.0.1"
         proxy_port = "7890"
-        proxy = Proxy({
-            'proxyType': 'MANUAL',
-            'httpProxy': f'{proxy_ip}:{proxy_port}',
-            'sslProxy': f'{proxy_ip}:{proxy_port}',
-        })
-        chrome_options.add_argument('--proxy-server=%s' % proxy.httpProxy)
+        if self.proxy:
+            proxy = Proxy({
+                'proxyType': 'MANUAL',
+                'httpProxy': f'{proxy_ip}:{proxy_port}',
+                'sslProxy': f'{proxy_ip}:{proxy_port}',
+            })
+            chrome_options.add_argument('--proxy-server=%s' % proxy.httpProxy)
+        else:
+            chrome_options.add_argument('--proxy-server=direct://')
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
 
@@ -60,15 +71,21 @@ class Voice:
         driver.quit()
         return mp3_list
 
+    # 过滤mp3_list，只保留指定角色的mp3
     def filter_mp3_list(self, mp3_list):
         mp3_list = [url for url in mp3_list if url.endswith(f"{self.character}.mp3")]
         return mp3_list
 
+    # 下载mp3
     def download_mp3(self, mp3_list):
         log_manager = LogManager()
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'resource')
+        # 获取当前脚本所在的目录
+        # todo: 我觉得为什么不在一个类里面干脆把所有的路径都声明了呢？
+        path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resource')
+
         if not os.path.exists(path):
             os.mkdir(path)
+            
         for mp3 in mp3_list:
             filename = mp3.split('/')[-1]
             filepath = os.path.join(path, filename)

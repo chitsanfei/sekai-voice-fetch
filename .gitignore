@@ -130,4 +130,4 @@ dmypy.json
 
 # Program output
 logger/logs
-sekai/resource
+resource
