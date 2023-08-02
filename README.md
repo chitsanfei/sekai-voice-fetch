@@ -5,16 +5,20 @@
     <b>一个用于爬取sekai.best网站中角色的对话语音的爬虫？</b>
 </div>
 
----
+</br>
 
-[![Github Issue](https://img.shields.io/github/issues/MashiroSA/sekai-voice-fetch)](https://github.com/MashiroSA/sekai-voice-fetch/issues)
-[![Github Forks](https://img.shields.io/github/forks/MashiroSA/sekai-voice-fetch)](https://github.com/MashiroSA/sekai-voice-fetch/fork)
-[![Github Stars](https://img.shields.io/github/stars/MashiroSA/sekai-voice-fetch)](https://github.com/MashiroSA/sekai-voice-fetch)
-[![GitHub License](https://img.shields.io/github/license/MashiroSA/sekai-voice-fetch)](https://github.com/MashiroSA/sekai-voice-fetch/blob/master/LICENSE)
+<p align="center">
+    <a href="https://github.com/MashiroSA/sekai-voice-fetch/issues"><img src="https://img.shields.io/github/issues/MashiroSA/sekai-voice-fetch"></a>
+    <a href="https://github.com/MashiroSA/sekai-voice-fetch/forks"><img src="https://img.shields.io/github/forks/MashiroSA/sekai-voice-fetch"></a>
+    <a href="https://github.com/MashiroSA/sekai-voice-fetch"><img src="https://img.shields.io/github/stars/MashiroSA/sekai-voice-fetch"></a>
+    <a href="https://github.com/MashiroSA/sekai-voice-fetch/blob/main/LICENSE"><img src="https://img.shields.io/github/license/MashiroSA/sekai-voice-fetch"></a>
+    <a href="https://github.com/MashiroSA/sekai-voice-fetch"><img src="https://img.shields.io/github/commit-activity/t/MashiroSA/sekai-voice-fetch"></a>
+</p>
 
----
+<div align="center">
+    <img src="https://repobeats.axiom.co/api/embed/27ead3353d126b5d5008a85afedf019e30ec3531.svg" alt="Repobeats analytics image">
+</div>
 
-![Alt](https://repobeats.axiom.co/api/embed/27ead3353d126b5d5008a85afedf019e30ec3531.svg "Repobeats analytics image")
 
 ---
 
