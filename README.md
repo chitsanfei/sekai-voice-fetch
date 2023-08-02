@@ -41,7 +41,7 @@
 ├── sekai #sekai包，主要管理模拟访问和下载
 │   ├── voice.py
 │   ├── __init__.py
-│   └── resource #下载到的文件都存放在这个文件夹里
+│── resource #下载到的文件都存放在这个文件夹里
 │
 ├── tests
 └── venv
@@ -63,19 +63,17 @@ character = 14
 - 如有需要，可以继续修改下载间隔interval(默认30秒)，请勿调整过小，极容易触发`503`。
 
 ### 运行
-> Python > 3.8, Tested by Python 3.10
-> 
-> 建议启用虚拟环境venv
-
+- Python > 3.8, Tested by Python 3.10
+- 启用虚拟环境venv
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+  python3 -m venv .venv
+  source .venv/bin/activate
 ```
-
+- 安装依赖
 ```bash
   pip install -r requirements.txt
 ```
-
+- 运行程序
 ```bash
   python3 ./main.py
 ```
