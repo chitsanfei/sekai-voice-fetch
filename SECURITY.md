@@ -12,12 +12,6 @@
 - 程序不应危害用户隐私。
 - 程序有使用用户存储空间和网络的行为，但是应在程序工作文件夹内生成。
 
-## 版本兼容性
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.0.1   | :white_check_mark: |
-
 ## 向我们汇报漏洞
 您的意见非常重要！当你发现漏洞，错误，或者有违反安全声明的情况下，请在本项目的[Github Issues](https://github.com/MashiroSA/sekai-voice-fetch/issues)中提出，将你发现的问题，日志，操作系统和Python版本提交给我们。
 
