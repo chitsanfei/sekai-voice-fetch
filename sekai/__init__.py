@@ -18,8 +18,8 @@ if not os.path.exists(config_path):
         'interval': '30',
         'character': '14',
         'proxy': 'false',
-        'proxy_ip': '',
-        'proxy_port': ''
+        'proxy_ip': '127.0.0.1',
+        'proxy_port': '7890'
     }
     # 写入配置文件
     with open(config_path, 'w') as f:

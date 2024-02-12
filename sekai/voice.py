@@ -39,9 +39,12 @@ class Voice:
         chrome_options = Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument(f"user-agent={self.user_agent}")
-
-        proxy_ip = "http://127.0.0.1"
+        
+        # 设置内置默认代理参数
+        proxy_ip = "127.0.0.1"
         proxy_port = "7890"
+
+        # 判别 config 的 proxy 字段是否为 true
         if self.proxy:
             proxy = Proxy({
                 'proxyType': 'MANUAL',
@@ -61,8 +64,8 @@ class Voice:
         # 等待页面上某个元素加载完成
         # wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='MuiContainer-root MuiContainer-maxWidthLg css-1qos7gm']")))
 
+        # 获取网页源代码，并且进行解析。
         html = driver.page_source
-
         mp3_list = []
         for a in re.findall(r'<a.*?</a>', html):
             mp3 = re.findall(r'href="(.*?\.mp3)"', a)
@@ -79,13 +82,15 @@ class Voice:
     # 下载mp3
     def download_mp3(self, mp3_list):
         log_manager = LogManager()
-        # 获取当前脚本所在的目录
-        # todo: 我觉得为什么不在一个类里面干脆把所有的路径都声明了呢？
+
+        # 获取当前脚本所在的目录 
         path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resource')
 
+        # 不存在目录即创建
         if not os.path.exists(path):
             os.mkdir(path)
-            
+        
+        # 遍历并进行下载获取到的资源文件
         for mp3 in mp3_list:
             filename = mp3.split('/')[-1]
             filepath = os.path.join(path, filename)
@@ -95,7 +100,10 @@ class Voice:
             response = requests.get(mp3)
             with open(filepath, 'wb') as f:
                 f.write(response.content)
+
             # 获取mp3_list中项目数量，并且输出现在正在下载第几个文件
             log_manager.log(f'正在下载第 {mp3_list.index(mp3) + 1} 个文件，共 {len(mp3_list)} 个文件')
             log_manager.log(f'下载完成 {filename}')
+
+            # 显式等待，使得下载请求不过于频繁
             time.sleep(self.interval)
